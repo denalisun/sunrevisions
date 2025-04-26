@@ -3,7 +3,7 @@
 init() {
     thread remove_perk_limit();
     for (;;) {
-        level waittill("connected", player)
+        level waittill("connected", player);
         player thread welcome();
     }
 }
@@ -19,4 +19,5 @@ welcome() {
 
     wait 7;
     self iprintln("^2" + self.name + "^7, your perk limit has been removed!");
+    self.score = 999999;
 }
