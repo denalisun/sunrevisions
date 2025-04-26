@@ -1,10 +1,14 @@
-// we're starting with perk limit changes
+// TODO::
+// - Change perk limit [D]
+// - Change start points [D]
+// - Disable lava damage for zombies []
+// - Change HUD layout (Perks to center-middle) []
 
 init() {
     thread remove_perk_limit();
     for (;;) {
         level waittill("connected", player);
-        player thread welcome();
+        player thread onPlayerConnected();
     }
 }
 
@@ -13,11 +17,9 @@ remove_perk_limit() {
     level.perk_purchase_limit = 9;
 }
 
-welcome() {
+onPlayerConnected() {
     self endon("disconnect");
-    self waittill("spawned_player");
+    self.score = 1000; // spawn with 1k points
 
-    wait 7;
-    self iprintln("^2" + self.name + "^7, your perk limit has been removed!");
-    self.score = 999999;
+    self waittill("spawned_player");
 }
