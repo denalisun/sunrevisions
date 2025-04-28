@@ -1,4 +1,4 @@
-# PlutoServer
+# Sun's 
  Self explanatory
 
 # TODO
@@ -11,12 +11,16 @@
 - No perk limit ✅
 - Zombie cap (48 max per round) ✅
 - Health cap (round 35) ✅
-- Health bar ✅
+- BO4 Max Ammo
+- Health bar ❓
 - Saving system
 	- like save codes from the NES
 - Custom perks
 	- Lava Lemonade
 		- $6000, removes lava damage
+	- Mule Kick
+		- $4000
+	- 
 - Ray Gun easter egg
 	- Open box between round 9 and 10
 		- stolen from roblox
