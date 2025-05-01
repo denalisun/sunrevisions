@@ -1,5 +1,4 @@
-# Sun's 
- Self explanatory
+# Sun's Revisions
 
 # TODO
 ## ✅ == Finished
