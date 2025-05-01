@@ -1,1 +1,1 @@
-xcopy "src\" "%localappdata%\Plutonium\storage\t6\scripts" /E /H /C /I
+xcopy "src\" "%localappdata%\Plutonium\storage\t6\scripts" /E /H /C /I /Y

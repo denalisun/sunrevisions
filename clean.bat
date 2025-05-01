@@ -1,0 +1,1 @@
+del /S /Q "%localappdata%\Plutonium\storage\t6\scripts"
