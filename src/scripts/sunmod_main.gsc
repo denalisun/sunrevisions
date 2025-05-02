@@ -9,6 +9,7 @@
 #include scripts\mechanics\no_perk_limit;
 #include scripts\mechanics\difficulty;
 #include scripts\mechanics\max_ammo;
+#include scripts\mechanics\pack_a_punch;
 
 #include scripts\_sunmod_utils;
 
@@ -17,6 +18,9 @@ main() {
 
     replacefunc(::give_perk, ::give_perk_modified);
     replacefunc(::ai_calculate_health, ::ai_calculate_health__override);
+    replacefunc(::vending_weapon_upgrade, ::vending_weapon_upgrade__override);
+
+    maps\mp\zombies\_zm_spawner::register_zombie_damage_callback(::tier_damage_callback);
 }
 
 init() {
@@ -26,6 +30,7 @@ init() {
     level thread on_player_connected();
 
     level.local_doors_stay_open = 1;
+    level.start_weapon = "an94_upgraded_zm";
 }
 
 on_player_connected() {
@@ -35,6 +40,7 @@ on_player_connected() {
         player thread on_player_spawned();
         player thread max_ammo_fix();
         player thread player_downed_watcher();
+        player thread weapon_tier_watcher();
         player setperk("specialty_unlimitedsprint");
     }
 }
@@ -44,5 +50,6 @@ on_player_spawned() {
     level endon("end_game");
     for (;;) {
         self waittill("spawned_player");
+        self.score = 999999;
     }
 }
