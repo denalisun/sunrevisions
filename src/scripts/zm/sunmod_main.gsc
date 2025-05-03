@@ -4,14 +4,14 @@
 #include maps\mp\zombies\_zm_perks;
 #include maps\mp\zombies\_zm_spawner;
 
-#include scripts\mechanics\custom_hud;
-#include scripts\mechanics\round_salary;
-#include scripts\mechanics\no_perk_limit;
-#include scripts\mechanics\difficulty;
-#include scripts\mechanics\max_ammo;
-#include scripts\mechanics\pack_a_punch;
+#include scripts\zm\mechanics\custom_hud;
+#include scripts\zm\mechanics\round_salary;
+#include scripts\zm\mechanics\no_perk_limit;
+#include scripts\zm\mechanics\difficulty;
+#include scripts\zm\mechanics\max_ammo;
+#include scripts\zm\mechanics\pack_a_punch;
 
-#include scripts\_sunmod_utils;
+#include scripts\zm\_sunmod_utils;
 
 main() {
     init_sunmod_vars();
@@ -30,7 +30,6 @@ init() {
     level thread on_player_connected();
 
     level.local_doors_stay_open = 1;
-    level.start_weapon = "an94_upgraded_zm";
 }
 
 on_player_connected() {

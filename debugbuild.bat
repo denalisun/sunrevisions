@@ -1,0 +1,1 @@
+xcopy "src\*" "%LOCALAPPDATA%\Plutonium\storage\t6" /E /H /C /I /Y

@@ -14,8 +14,8 @@
 #include maps\mp\_visionset_mgr;
 #include maps\mp\zombies\_zm_perks;
 #include maps\mp\zombies\_zm;
-#include scripts\mechanics\custom_hud;
-#include scripts\_sunmod_utils;
+#include scripts\zm\mechanics\custom_hud;
+#include scripts\zm\_sunmod_utils;
 
 get_current_base_weapon() {
     current_weapon = self GetCurrentWeapon();
@@ -68,6 +68,7 @@ weapon_tier_watcher() {
                     self.weapon_tiers[current_weapon] = 1;
                 }
             }
+            self iprintln(self.weapon_tiers[current_weapon]);
             self pap_tier_hud(self.weapon_tiers[current_weapon]);
         }
     }
@@ -108,7 +109,6 @@ pap_tier_hud(tier)
         self.pap_tier_hud.color = (0.54, 0, 0);
         self.pap_tier_hud.hidewheninmenu = 1;
         self.pap_tier_hud SetText(convert_to_roman(tier));
-        self.pap_tier_hud fadeovertime(1);
     }
 }
 

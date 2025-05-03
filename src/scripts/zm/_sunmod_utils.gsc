@@ -7,6 +7,7 @@ init_sunmod_vars() {
     // 3 = Rampage
     // 4 = Apocalypse
     level.sunmod_vars["difficulty"] = 1;
+    level.sunmod_vars["using_zm_weapons"] = false; // set to true if compiled with zm_weapons
 }
 
 convert_to_roman(value) {
