@@ -3,6 +3,9 @@
 #include maps\mp\zombies\_zm;
 #include maps\mp\zombies\_zm_perks;
 #include maps\mp\zombies\_zm_spawner;
+#include maps\mp\zombies\_zm_weapons;
+#include maps\mp\zombies\_zm_utility;
+#include maps\mp\zombies\_zm_magicbox;
 
 #include scripts\zm\mechanics\custom_hud;
 #include scripts\zm\mechanics\round_salary;
@@ -13,14 +16,26 @@
 
 #include scripts\zm\_sunmod_utils;
 
+#include scripts\zm\map\perks;
+
+#include scripts\zm\easter_eggs\raygun_round;
+
 main() {
+    precacheshader("sigmasigmaboi");
+    precacheshader("damage_feedback");
+
     init_sunmod_vars();
 
     replacefunc(::give_perk, ::give_perk_modified);
     replacefunc(::ai_calculate_health, ::ai_calculate_health__override);
     replacefunc(::vending_weapon_upgrade, ::vending_weapon_upgrade__override);
+    replacefunc(::can_pack_weapon, ::can_pack_weapon__override);
+    replacefunc(::treasure_chest_weapon_spawn, ::treasure_chest_weapon_spawn__override);
 
     maps\mp\zombies\_zm_spawner::register_zombie_damage_callback(::tier_damage_callback);
+
+    maps\mp\zombies\_zm_spawner::register_zombie_damage_callback(::do_hitmarker);
+    maps\mp\zombies\_zm_spawner::register_zombie_death_event_callback(::do_hitmarker_death);
 }
 
 init() {
@@ -28,6 +43,11 @@ init() {
     level thread difficulty_handler();
     level thread round_salary();
     level thread on_player_connected();
+
+    level thread init_perks();
+
+    // Easter eggs
+    level thread round_watcher();
 
     level.local_doors_stay_open = 1;
 }
@@ -40,6 +60,10 @@ on_player_connected() {
         player thread max_ammo_fix();
         player thread player_downed_watcher();
         player thread weapon_tier_watcher();
+
+        if (!isdefined(player.hud_damagefeedback))
+            player thread init_player_hitmarkers();
+
         player setperk("specialty_unlimitedsprint");
     }
 }
@@ -49,6 +73,19 @@ on_player_spawned() {
     level endon("end_game");
     for (;;) {
         self waittill("spawned_player");
+        if (level.sunmod_vars["difficulty"] < 2)
+            self.score = 1000;
+        
         self.score = 999999;
+
+        if (level.sunmod_vars["difficulty"] == 0 && randomint(100) > 75) {
+            self giveweapon("mp5k_zm");
+            self switchtoweapon("mp5k_zm");
+        }
+        
+        if (level.sunmod_vars["difficulty"] == 1 && randomint(100) > 90) {
+            self giveweapon("mp5k_zm");
+            self switchtoweapon("mp5k_zm");
+        }
     }
 }

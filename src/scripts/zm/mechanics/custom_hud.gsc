@@ -56,6 +56,10 @@ health_bar_loop() {
     }
 }
 
+register_new_perk_hud(perkId, shader, tint) {
+
+}
+
 perk_hud(perk) {
     if ( !IsDefined( self.perk_hud ) ) {
         self.perk_hud = [];
@@ -68,7 +72,7 @@ perk_hud(perk) {
     switch( perk ) {
     	case "specialty_armorvest":
         	shader = "specialty_juggernaut_zombies";
-        	break;
+            break;
     	case "specialty_quickrevive":
         	shader = "specialty_quickrevive_zombies";
         	break;
@@ -106,6 +110,7 @@ perk_hud(perk) {
         	shader = "";
         	break;
     }
+
     hud = newclienthudelem( self );
     hud.foreground = true;
     hud.sort = 1;
@@ -117,10 +122,10 @@ perk_hud(perk) {
     hud.y = -5;
     
     if(self.perk_hud_array.size > 0)
-        hud.x = self.perk_hud_array[ self.perk_hud_array.size - 1].x + 20;
+        hud.x = self.perk_hud_array[ self.perk_hud_array.size - 1].x + 28;
 
     hud.alpha = 1;
-    hud SetShader( shader, 16, 16 );
+    hud SetShader( shader, 24, 24 );
 
     hud.archived = 0;
     
@@ -129,7 +134,7 @@ perk_hud(perk) {
     
     if(self.perk_hud.size > 1) {
         foreach(hud in self.perk_hud_array) 
-            hud.x -= 10;
+            hud.x -= 14;
     }
 }
 
@@ -221,4 +226,58 @@ player_downed_watcher() {
         }
 		self notify( "stop_electric_cherry_reload_attack" );
 	}
+}
+
+// Copied from mjkzy on GitHub
+init_player_hitmarkers()
+{
+    self.hud_damagefeedback = newdamageindicatorhudelem(self);
+    self.hud_damagefeedback.horzalign = "center";
+    self.hud_damagefeedback.vertalign = "middle";
+    self.hud_damagefeedback.x = -12;
+    self.hud_damagefeedback.y = -12;
+    self.hud_damagefeedback.alpha = 0;
+    self.hud_damagefeedback.archived = 1;
+    self.hud_damagefeedback.color = (1, 1, 1);
+
+    self.hud_damagefeedback setshader("damage_feedback", 24, 48);
+    self.hitsoundtracker = 1;
+}
+
+// a improved updatedamagefeedback
+do_hitmarker_internal(mod, death)
+{
+    if (!isplayer(self))
+        return;
+
+    if (!isdefined(death))
+        death = false;
+
+    if (isdefined(mod) && mod != "MOD_CRUSH" && mod != "MOD_GRENADE_SPLASH" && mod != "MOD_HIT_BY_OBJECT")
+    {
+        self.hud_damagefeedback.color = (1, 1, 1);
+
+        if (death && level.red_hitmarkers_on_death)
+            self.hud_damagefeedback.color = (1, 0, 0);
+
+        self.hud_damagefeedback setshader("damage_feedback", 24, 48);
+        self.hud_damagefeedback.alpha = 1;
+        self.hud_damagefeedback fadeovertime(1);
+        self.hud_damagefeedback.alpha = 0;
+    }
+}
+
+do_hitmarker(mod, hit_location, hit_origin, player, amount)
+{
+    if (isdefined(player) && isplayer(player) && player != self)
+        player thread do_hitmarker_internal(mod, player);
+
+    return false;
+}
+
+do_hitmarker_death()
+{
+    // self is the zombie victim in this case
+    if (isdefined(self.attacker) && isplayer(self.attacker) && self.attacker != self)
+        self.attacker thread do_hitmarker_internal(self.damagemod, self.attacker);
 }

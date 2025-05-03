@@ -3,11 +3,20 @@ init_sunmod_vars() {
 
     // 0 = Easy
     // 1 = Normal
-    // 2 = Hard
-    // 3 = Rampage
-    // 4 = Apocalypse
+    // 2 = Classic
+    // 3 = Hard
+    // 4 = Rampage
+    // 5 = Infernal
     level.sunmod_vars["difficulty"] = 1;
     level.sunmod_vars["using_zm_weapons"] = false; // set to true if compiled with zm_weapons
+}
+
+spawn_trigger(origin, width, height, cursorhint, string) {
+    trig = spawn("trigger_radius", origin, 1, width, height);
+    trig setcursorhint(cursorhint, trig);
+    trig sethintstring(string);
+    trig setvisibletoall();
+    return trig;
 }
 
 convert_to_roman(value) {

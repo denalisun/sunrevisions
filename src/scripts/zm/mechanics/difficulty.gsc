@@ -32,8 +32,15 @@ difficulty_handler() {
         if (difficulty == 0) {
             if (level.zombie_total > 35)
                 level.zombie_total = 35;
-        } else if (difficulty >= 3) {
+        } else if (difficulty == 1) {
+            if (level.zombie_total > 59)
+                level.zombie_total = 59;    
+        }
+        
+        if (difficulty >= 4) {
             level.zombie_move_speed = 71;
+            if (difficulty == 5)
+                level.zombie_vars["zombie_spawn_delay"] = 0;
         }
     }
 }
@@ -65,11 +72,11 @@ ai_calculate_health__override( round_number )
         if (level.zombie_health > 8454)
             level.zombie_health = 8454; // round 35 health cap
     }
-    else if (level.sunmod_vars["difficulty"] == 2)
-        level.zombie_health += int(level.zombie_health * 0.25);
     else if (level.sunmod_vars["difficulty"] == 3)
-        level.zombie_health += int(level.zombie_health * 0.5);
+        level.zombie_health += int(level.zombie_health * 0.25);
     else if (level.sunmod_vars["difficulty"] == 4)
+        level.zombie_health += int(level.zombie_health * 0.5);
+    else if (level.sunmod_vars["difficulty"] == 5)
         level.zombie_health += int(level.zombie_health * 2);
     
     players = getplayers();

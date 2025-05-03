@@ -85,9 +85,9 @@ pap_tier_hud(tier)
 	{
         self.pap_tier_hud = newClientHudElem(self);
         self.pap_tier_hud.alignx = "right";
-        self.pap_tier_hud.aligny = "top";
+        self.pap_tier_hud.aligny = "bottom";
         self.pap_tier_hud.horzalign = "user_right";
-        self.pap_tier_hud.vertalign = "user_top";
+        self.pap_tier_hud.vertalign = "user_bottom";
         if( getdvar( "mapname" ) == "zm_transit" || getdvar( "mapname" ) == "zm_highrise" || getdvar( "mapname" ) == "zm_nuked")
         {
             self.pap_tier_hud.x = -85;
@@ -110,6 +110,22 @@ pap_tier_hud(tier)
         self.pap_tier_hud.hidewheninmenu = 1;
         self.pap_tier_hud SetText(convert_to_roman(tier));
     }
+}
+
+can_pack_weapon__override( weaponname )
+{
+    if ( "riotshield_zm" == weaponname )
+        return false;
+
+    if ( flag( "pack_machine_in_use" ) )
+        return true;
+
+    weaponname = self get_nonalternate_weapon( weaponname );
+
+    if ( !maps\mp\zombies\_zm_weapons::is_weapon_or_base_included( weaponname ) )
+        return false;
+
+    return true;
 }
 
 vending_weapon_upgrade__override()
@@ -183,6 +199,10 @@ vending_weapon_upgrade__override()
 
         if ( isdefined( level.custom_pap_validation ) )
         {
+            players = getplayers();
+            foreach(plaayer in players)
+                plaayer iprintln("Wtaf bro");
+
             valid = self [[ level.custom_pap_validation ]]( player );
 
             if ( !valid )
@@ -213,6 +233,17 @@ vending_weapon_upgrade__override()
 
         if ( !maps\mp\zombies\_zm_weapons::is_weapon_or_base_included( current_weapon ) )
             continue;
+
+        upgrade_as_attachment = will_upgrade_weapon_as_attachment( current_weapon );
+        if ( upgrade_as_attachment )
+        {
+            current_cost = self.attachment_cost;
+            player.restore_ammo = 1;
+            player.restore_clip = player getweaponammoclip( current_weapon );
+            player.restore_clip_size = weaponclipsize( current_weapon );
+            player.restore_stock = player getweaponammostock( current_weapon );
+            player.restore_max = weaponmaxammo( current_weapon );
+        }
 
         current_cost = self.cost;
         player.restore_ammo = undefined;
@@ -252,13 +283,20 @@ vending_weapon_upgrade__override()
         playsoundatposition( sound, self.origin );
         self thread maps\mp\zombies\_zm_audio::play_jingle_or_stinger( "mus_perks_packa_sting" );
 
-        self.current_weapon = current_weapon;
-        upgrade_name = maps\mp\zombies\_zm_weapons::get_upgrade_weapon( current_weapon, 0 );
+        weaponname = self get_nonalternate_weapon(current_weapon);
+        is_bo1 = false;
+        if ( !maps\mp\zombies\_zm_weapons::is_weapon_or_base_included( weaponname ) )
+            is_bo1 = true;
+        if ( !player maps\mp\zombies\_zm_weapons::can_upgrade_weapon( weaponname ) )
+            is_bo1 = true;
 
-        if (self.pack_tier == 1)
-            player giveweapon(upgrade_name, 0, player maps\mp\zombies\_zm_weapons::get_pack_a_punch_weapon_options( upgrade_name ));
+        self.current_weapon = current_weapon;
+        if (is_bo1)
+            upgrade_name = current_weapon;
         else
-            player giveweapon(upgrade_name, 0);
+            upgrade_name = maps\mp\zombies\_zm_weapons::get_upgrade_weapon(current_weapon, upgrade_as_attachment);
+
+        player giveweapon(upgrade_name, 0, player maps\mp\zombies\_zm_weapons::get_pack_a_punch_weapon_options( upgrade_name ));
         player.weapon_tiers[upgrade_name] = self.pack_tier;
         player switchtoweapon(upgrade_name);
 
