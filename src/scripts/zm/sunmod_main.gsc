@@ -12,7 +12,7 @@
 #include scripts\zm\mechanics\no_perk_limit;
 #include scripts\zm\mechanics\difficulty;
 #include scripts\zm\mechanics\max_ammo;
-#include scripts\zm\mechanics\pack_a_punch;
+#include scripts\zm\mechanics\weapons\pack_a_punch;
 
 #include scripts\zm\_sunmod_utils;
 
@@ -71,7 +71,7 @@ on_player_connected() {
         player thread player_downed_watcher();
         player thread weapon_tier_watcher();
 
-        player thread say_pos();
+        //player thread say_pos();
 
         if (!isdefined(player.hud_damagefeedback))
             player thread init_player_hitmarkers();

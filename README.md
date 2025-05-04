@@ -40,7 +40,7 @@
 	- Crate Power Cocktail 🔁
 		- $10000, gives PaP'ed gun when picking up from the box.
 - Weapon perks
-	- Recieved on weapon on first PaP
+	- Received on weapon on first PaP
 	- Perk Ideas
 		- Danger Closest
 			- No splashback damage (only on RPG, War Machine and Ray Gun)

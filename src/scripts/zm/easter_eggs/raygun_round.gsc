@@ -20,7 +20,7 @@ round_watcher() {
 
     for (;;) {
         level waittill("end_of_round");
-        if (level.round_number == 2) {
+        if (level.round_number == 16) {
             level thread raygun_watcher();
         }
     }

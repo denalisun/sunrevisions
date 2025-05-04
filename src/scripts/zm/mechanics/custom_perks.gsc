@@ -214,5 +214,4 @@ play_fx( fx )
 
 init_perks() {
     scripts\zm\mechanics\perks\lava_lemonade::init_perk();
-    scripts\zm\mechanics\perks\crate_power::init_perk();
 }
