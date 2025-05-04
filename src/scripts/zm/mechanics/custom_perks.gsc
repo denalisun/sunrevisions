@@ -66,6 +66,7 @@
 #include maps\mp\zombies\_zm_ai_sloth_buildables;
 
 #include scripts\zm\_sunmod_utils;
+#include scripts\zm\mechanics\custom_hud;
 
 spawn_perk_machine(pos, model, angles, type, sound, name, cost, fx, perk, bottle) {
     perkmachine = spawn( "script_model", pos);
@@ -77,19 +78,133 @@ spawn_perk_machine(pos, model, angles, type, sound, name, cost, fx, perk, bottle
 	collision.angles = angles;
     trig = spawn_trigger(pos, 32, 32, "HINT_ACTIVATE", "Hold ^3&&1^7 for " + name + " [Cost: " + cost + "]");
     perkmachine thread play_fx(fx);
-    //trig thread perk_machine_trigger(perk, sound, bottle, cost);
+    trig thread perk_machine_trigger(perk, sound, bottle, cost);
     return trig;
+}
+
+hascustomperk(perkId) {    
+    if (!isdefined(self.custom_perk_list))
+        return false;
+    
+    foreach(perk in self.custom_perk_list)
+        if (perk == perkId)
+            return true;
+    
+    return false;
+}
+
+get_perk_by_id(perk_id) {
+    if (!isdefined(level.custom_perks))
+        return undefined;
+
+    foreach(perk in level.custom_perks) {
+        if (perk.perkId == perk_id)
+            return perk;
+    }
+
+    return undefined;
 }
 
 perk_machine_trigger(perkId, sound, bottle, cost) {
     level endon("end_game");
     for (;;) {
         //TODO: Perk stuff
+        self waittill("trigger", player);
+        if (player UseButtonPressed()) {
+            if (!isdefined(player.custom_perk_list))
+                player.custom_perk_list = [];
+
+            if (player.score >= cost && !player maps\mp\zombies\_zm_laststand::player_is_in_laststand() && !player hascustomperk(perkId)) {
+                player.machine_is_in_use = 1;
+                player playsound("zmb_cha_ching");
+                player.score -= cost;
+                player playsound(sound);
+                player thread doallthestuff(perkId, bottle);
+                player.custom_perk_list[player.custom_perk_list.size] = perkId;
+                wait 4;
+                player.machine_is_in_use = 0;
+
+                perka = get_perk_by_id(perkId);
+                player thread [[ perka.perkCallback ]] ();
+                player thread [[ perka.perkEndCallback ]] ();
+            }
+        }
+        
+        if (player UseButtonPressed() && player.score < cost)
+            player maps\mp\zombies\_zm_audio::create_and_play_dialog("general", "perk_deny", undefined, 0);
     }
 }
 
-register_new_perk(name, perkId, model, fx, bottle, cost, origin, angles) {
+doallthestuff(perkId, bottle) {
+    self allowProne(false);
+    self allowSprint(false);
+    self disableoffhandweapons();
+    self disableweaponcycling();
+    weapona = self getcurrentweapon();
+    weaponb = bottle;
+    self giveweapon( weaponb );
+    self switchtoweapon( weaponb );
+    self waittill( "weapon_change_complete" );
+    self enableoffhandweapons();
+    self enableweaponcycling();
+    self takeweapon( weaponb );
+    self switchtoweapon( weapona );
+    self maps\mp\zombies\_zm_audio::playerexert( "burp" );
+    self setblur( 4, 0.1 );
+    wait 0.1;
+    self setblur( 0, 0.1 );
+    self allowProne(true);
+    self allowSprint(true);
+
+    // Make hud
+    perk_hud(perkId);
+}
+
+register_new_perk(name, perkId, model, fx, bottle, cost, shader, callback, end_callback, origin, angles) {
+    if (!isdefined(level.custom_perks))
+        level.custom_perks = [];
+
+    str = spawnstruct();
+    str.perkName = name;
+    str.perkId = perkId;
+    str.perkShader = shader;
+    str.perkCallback = callback;
+    str.perkEndCallback = end_callback;
+    level.custom_perks[level.custom_perks.size] = str;
+
     spawn_perk_machine(origin, model, angles, "custom", "mus_perks_sleight_sting", name, cost, fx, perkId, bottle);
+}
+
+is_perk_registered(perkId) {
+    if (!isdefined(level.custom_perks))
+        return false;
+    
+    foreach(perk in level.custom_perks)
+        if (perk == perkId)
+            return true;
+
+    return false;
+}
+
+remove_custom_perk(perkId) {
+    perka = get_perk_by_id(perkId);
+    if (!isdefined(perka)) return;
+
+
+}
+
+player_downed_watcher() {
+	level endon("end_game");
+	while(1) {
+		self waittill("player_downed");
+		foreach(hud in self.perk_hud) {
+            self.perk_hud = [];
+            self.perk_hud_array = [];
+            hud destroy();
+        }
+        self.custom_perk_list = [];
+		self notify( "stop_electric_cherry_reload_attack" );
+	}
 }
 
 play_fx( fx )
@@ -98,5 +213,6 @@ play_fx( fx )
 }
 
 init_perks() {
-    register_new_perk("Lava Lemonade", "specialty_custom_lavadamage", "zombie_vending_doubletap2_on", "doubletap_light", "zombie_perk_bottle_doubletap", 6000, (1731.77, -802.512, -54.4511), (0, 300, 0));
+    scripts\zm\mechanics\perks\lava_lemonade::init_perk();
+    scripts\zm\mechanics\perks\crate_power::init_perk();
 }

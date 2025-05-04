@@ -35,15 +35,23 @@
 - Saving system
 	- like save codes from the NES
 - Custom perks
-	- Lava Lemonade (only on Tranzit and Survival maps)
+	- Lava Lemonade (only on Tranzit and Survival maps) ✅
 		- $6000, removes lava damage
-	- Second Chance Soda
-		- $3500, similar to Dying Wish, but gain godmode on "death" for 25 seconds. Prioritized over Quick Revive and/or Who's Who.
-	- Crate Power
+	- Crate Power Cocktail 🔁
 		- $10000, gives PaP'ed gun when picking up from the box.
 - Weapon perks
 	- Recieved on weapon on first PaP
-	
+	- Perk Ideas
+		- Danger Closest
+			- No splashback damage (only on RPG, War Machine and Ray Gun)
+		- Electric Shock
+			- Wonder Waffle
+		- Thunder Strike
+			- AoE explosive damage 
+		- Stock Option
+			- Uses the stock ammo first
+		- Amm-o-Matic
+			- Regenerates 5 ammo every second
 - Ray Gun easter egg ✅
 	- Open box between round 9 and 10
 		- stolen from roblox (Michael's Zombies)

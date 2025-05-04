@@ -1,5 +1,7 @@
 import os, zipfile, shutil, json
 
+os.ar
+
 LAD = os.getenv("LOCALAPPDATA")
 modpath = os.path.join(LAD, "Plutonium\\storage\\t6\\mods\\zm_overhaul")
 

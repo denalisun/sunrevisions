@@ -11,6 +11,8 @@
 #include maps\mp\zombies\_zm_weapons;
 #include maps\mp\gametypes_zm\_hud_message;
 
+#include scripts\zm\mechanics\custom_perks;
+
 init() {
     level thread on_player_connect();
 }
@@ -54,10 +56,6 @@ health_bar_loop() {
         wait 0.05;
         waittillframeend;
     }
-}
-
-register_new_perk_hud(perkId, shader, tint) {
-
 }
 
 perk_hud(perk) {
@@ -109,6 +107,15 @@ perk_hud(perk) {
     	default:
         	shader = "";
         	break;
+    }
+
+    if (shader == "" && isdefined(level.custom_perks)) {
+        if (is_perk_registered(perk))
+        {
+            perka = get_perk_by_id(perk);
+            if (isdefined(perka))
+                shader = perka.perkShader;
+        }
     }
 
     hud = newclienthudelem( self );
@@ -213,19 +220,6 @@ give_perk_modified(perk, bought) {
     self notify( "perk_acquired" );
     self perk_hud(perk);
     self thread perk_think( perk );
-}
-
-player_downed_watcher() {
-	level endon("end_game");
-	while(1) {
-		self waittill("player_downed");
-		foreach(hud in self.perk_hud) {
-            self.perk_hud = [];
-            self.perk_hud_array = [];
-            hud destroy();
-        }
-		self notify( "stop_electric_cherry_reload_attack" );
-	}
 }
 
 // Copied from mjkzy on GitHub

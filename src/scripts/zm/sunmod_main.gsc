@@ -16,13 +16,15 @@
 
 #include scripts\zm\_sunmod_utils;
 
-#include scripts\zm\map\perks;
+#include scripts\zm\mechanics\custom_perks;
 
 #include scripts\zm\easter_eggs\raygun_round;
 
 main() {
-    precacheshader("sigmasigmaboi");
+    //precacheshader("sigmasigmaboi"); // this might make me mental
     precacheshader("damage_feedback");
+    precacheshader( "zombies_rank_3" );
+    precacheshader( "zombies_rank_5" );
 
     init_sunmod_vars();
 
@@ -52,6 +54,14 @@ init() {
     level.local_doors_stay_open = 1;
 }
 
+say_pos() {
+    level endon("end_game");
+    for (;;) {
+        self iprintln("Position: " + self.origin + "\nAngle: " + self.angles);
+        wait 1;
+    }
+}
+
 on_player_connected() {
     level endon("end_game");
     for (;;) {
@@ -60,6 +70,8 @@ on_player_connected() {
         player thread max_ammo_fix();
         player thread player_downed_watcher();
         player thread weapon_tier_watcher();
+
+        player thread say_pos();
 
         if (!isdefined(player.hud_damagefeedback))
             player thread init_player_hitmarkers();
