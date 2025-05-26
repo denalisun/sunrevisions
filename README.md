@@ -39,6 +39,26 @@
 		- $6000, removes lava damage
 	- Crate Power Cocktail 🔁
 		- $10000, gives PaP'ed gun when picking up from the box.
+- Custom weapons
+	- Wunderwaffe DG-4 "Pulsmodell"
+		- Storm PSR Model
+		- More ammo than Wunderwaffe DG-2
+		- Secondary Ability
+			- Creates a "ball" of electricity that lasts for 15 seconds
+			- Takes entire mag, cannot be used without full mag
+		- 6 Ammo, 18 reserve
+		- Wunderwaffe DG-5 "Arschtritter"
+			- PaPed Wunderwaffe DG-4
+			- 12 Ammo, 36 reserve
+			- Secondary Ability
+				- Longer duration, 25 seconds
+	- Wunderwaffe DG-2 (BO1) 🤔🤔 (double bc I will probably not do it)
+	- PPSh-41 (WaW) 🤔
+		- Exact same stats pretty much
+	- Peacekeeper
+		- Exact same peacekeeper stats
+		- Devil's Agent (PaPed Peacekeeper)
+			- 200% damage, 935 firerate (+~25%)
 - Weapon perks
 	- Received on weapon on first PaP
 	- Perk Ideas

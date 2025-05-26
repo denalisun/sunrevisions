@@ -41,7 +41,7 @@ thunder_strike() {
 stock_option() {
     level endon("end_game");
     for (;;) {
-
+        //TODO: Implement if I likey
     }
 }
 
