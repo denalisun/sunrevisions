@@ -26,6 +26,10 @@ main() {
     precacheshader( "zombies_rank_3" );
     precacheshader( "zombies_rank_5" );
 
+    include_weapon("peacekeeper_zm");
+    include_weapon("peacekeeper_upgraded_zm", 0);
+    add_zombie_weapon("peacekeeper_zm", "peacekeeper_upgraded_zm", &"WEAPON_PEACEKEEPER", 1000, "wpck_smg", "", undefined, 1);
+
     init_sunmod_vars();
 
     replacefunc(::give_perk, ::give_perk_modified);
