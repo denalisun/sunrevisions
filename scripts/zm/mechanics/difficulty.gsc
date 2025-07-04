@@ -24,8 +24,8 @@ difficulty_handler() {
     level endon("end_game");
 
     difficulty = level.sunmod_vars["difficulty"];
-    if (difficulty > 4)
-        difficulty = 4; // This should never happen but im making sure it doesn't
+    if (difficulty > 3)
+        difficulty = 3; // This should never happen but im making sure it doesn't
 
     for (;;) {
         level waittill("start_of_round");
@@ -37,11 +37,8 @@ difficulty_handler() {
                 level.zombie_total = 59;    
         }
         
-        if (difficulty >= 4) {
+        if (difficulty == 3)
             level.zombie_move_speed = 71;
-            if (difficulty == 5)
-                level.zombie_vars["zombie_spawn_delay"] = 0;
-        }
     }
 }
 
@@ -75,10 +72,8 @@ ai_calculate_health__override( round_number )
     else if (level.sunmod_vars["difficulty"] == 1)
         if (level.zombie_health > 11272)
             level.zombie_health = 11272; // round 35 health cap
-    else if (level.sunmod_vars["difficulty"] == 3)
+    else if (level.sunmod_vars["difficulty"] == 2)
         level.zombie_health += int(level.zombie_health * 0.25);
-    else if (level.sunmod_vars["difficulty"] == 4)
+    else if (level.sunmod_vars["difficulty"] == 3)
         level.zombie_health += int(level.zombie_health * 0.5);
-    else if (level.sunmod_vars["difficulty"] == 5)
-        level.zombie_health += int(level.zombie_health * 2);
 }

@@ -17,6 +17,7 @@
 #include scripts\zm\_sunmod_utils;
 
 #include scripts\zm\mechanics\custom_perks;
+#include scripts\zm\mechanics\aspects;
 
 #include scripts\zm\easter_eggs\raygun_round;
 
@@ -26,9 +27,7 @@ main() {
     precacheshader( "zombies_rank_3" );
     precacheshader( "zombies_rank_5" );
 
-    include_weapon("peacekeeper_zm");
-    include_weapon("peacekeeper_upgraded_zm", 0);
-    add_zombie_weapon("peacekeeper_zm", "peacekeeper_upgraded_zm", &"WEAPON_PEACEKEEPER", 1000, "wpck_smg", "", undefined, 1);
+    precachemodel( "zombie_vending_tombstone_on" );
 
     init_sunmod_vars();
 
@@ -51,6 +50,7 @@ init() {
     level thread on_player_connected();
 
     level thread init_perks();
+    level thread spawn_aspect_machine((1659.95, -544.765, -42.1959), (0, 180, 0), "mus_perks_sleight_sting", "doubletap_light");
 
     // Easter eggs
     level thread round_watcher();
@@ -75,7 +75,7 @@ on_player_connected() {
         player thread player_downed_watcher();
         player thread weapon_tier_watcher();
 
-        //player thread say_pos();
+        player thread say_pos();
 
         if (!isdefined(player.hud_damagefeedback))
             player thread init_player_hitmarkers();
@@ -92,16 +92,7 @@ on_player_spawned() {
         if (level.sunmod_vars["difficulty"] < 2)
             self.score = 1000;
         
+        // debug for now
         self.score = 999999;
-
-        if (level.sunmod_vars["difficulty"] == 0 && randomint(100) > 75) {
-            self giveweapon("mp5k_zm");
-            self switchtoweapon("mp5k_zm");
-        }
-        
-        if (level.sunmod_vars["difficulty"] == 1 && randomint(100) > 90) {
-            self giveweapon("mp5k_zm");
-            self switchtoweapon("mp5k_zm");
-        }
     }
 }

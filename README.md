@@ -5,7 +5,7 @@
 ## 🔁 == In Progress
 ## 🤔 == Considered
 - PaP
-	- Tiered (Infinite) 🔁
+	- Tiered (Infinite) ✅
 	- Instant PaP (like CW or BO6) ✅
 - No perk limit ✅
 - Difficulty
@@ -19,20 +19,20 @@
 		- Health cap (round 35) ✅
 		- 100% health ✅
 		- Start with $1000 ✅
-	- Classic
-		- Unchanged settings
 	- Hard
 		- 125% health ✅
 	- Rampage
 		- 150% health ✅
 		- Sprint from round 1 ✅
-	- Infernal
-		- 300% health ✅
-		- Supersprint from round 1 ✅
-		- No spawn delay
+- Gamemodes
+	- Survival (normal)
+	- Onslaught
+		- No time between rounds
+		- Start with random weapon
+	- Classic
+		- WaW gamerules
 - BO4 Max Ammo ✅
-- Health bar 🤔
-- Saving system
+- Saving system (only for Survival)
 	- like save codes from the NES
 - Custom perks
 	- Lava Lemonade (only on Tranzit and Survival maps) ✅
@@ -40,44 +40,38 @@
 	- Crate Power Cocktail 🔁
 		- $10000, gives PaP'ed gun when picking up from the box.
 - Custom weapons
-	- Wunderwaffe DG-4 "Pulsmodell"
+	- Elektrikgewehr "Electric Rifle"
 		- Storm PSR Model
-		- More ammo than Wunderwaffe DG-2
-		- Secondary Ability
-			- Creates a "ball" of electricity that lasts for 15 seconds
-			- Takes entire mag, cannot be used without full mag
-		- 6 Ammo, 18 reserve
-		- Wunderwaffe DG-5 "Arschtritter"
-			- PaPed Wunderwaffe DG-4
-			- 12 Ammo, 36 reserve
-			- Secondary Ability
-				- Longer duration, 25 seconds
-	- Wunderwaffe DG-2 (BO1) 🤔🤔 (double bc I will probably not do it)
-	- PPSh-41 (WaW) 🤔
-		- Exact same stats pretty much
+		- 5 Ammo, 4 reserve, 8 max
+		- Der Blitzkrieg
+			- PaPed
+			- 10 Ammo, 8 reserve, 8 max
+	- (All weapons from other maps)
 	- Peacekeeper
-		- Exact same peacekeeper stats
+		- Slightly modified damage, same stats
 		- Devil's Agent (PaPed Peacekeeper)
 			- 200% damage, 935 firerate (+~25%)
-- Weapon perks
-	- Received on weapon on first PaP
-	- Perk Ideas
-		- Danger Closest
-			- No splashback damage (only on RPG, War Machine and Ray Gun)
-		- Electric Shock
-			- Wonder Waffle
-		- Thunder Strike
-			- AoE explosive damage 
-		- Stock Option
-			- Uses the stock ammo first
-		- Amm-o-Matic
-			- Regenerates 5 ammo every second
+- Specialties
+	- Bloodlust ("ws_siphon")
+		- Steal 5HP for each bullet hit
+	- Double Tap Frenzy ("ws_firerate")
+		- Changes perk_weapRateMultiplier to 0.55
+		- Only applies with Double Tap
+	- Speed Cola Frenzy ("ws_reload")
+		- Changes perk_weapReloadMultiplier to 0.33
+		- Only applies with Speed Cola
+	- Stock Option ("ws_stockammo")
+		- Uses the stock ammo first
+	- Amm-o-Matic ("ws_ammoregen")
+		- Regenerates 10 ammo every second
 - Ray Gun easter egg ✅
 	- Open box between round 9 and 10
 		- stolen from roblox (Michael's Zombies)
 	- I might change it
 - Simple fixes
-	- Fog disabled 🤔
-	- All TranZit doors stay open ✅(i think)
+	- All TranZit doors stay open ✅
 	- Jetgun doesn't break
+	- Jetgun as a Primary
 	- Jetgun in box
+- Complicated Additions (misc)
+	- All weapons from all maps

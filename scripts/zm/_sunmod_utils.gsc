@@ -18,11 +18,9 @@ init_sunmod_vars() {
 
     // 0 = Easy
     // 1 = Normal
-    // 2 = Classic
-    // 3 = Hard
-    // 4 = Rampage
-    // 5 = Infernal
-    level.sunmod_vars["difficulty"] = 1;
+    // 2 = Hard
+    // 3 = Rampage
+    level.sunmod_vars["difficulty"] = getgametypesetting("");
     level.sunmod_vars["using_zm_weapons"] = false; // set to true if compiled with zm_weapons
 }
 
