@@ -22,6 +22,8 @@ init_sunmod_vars() {
     // 3 = Rampage
     level.sunmod_vars["difficulty"] = getgametypesetting("");
     level.sunmod_vars["using_zm_weapons"] = false; // set to true if compiled with zm_weapons
+
+    level.sunmod_vars["startingWeapon"] = getgametypesetting("sun_starterWeapon");
 }
 
 spawn_trigger(origin, width, height, cursorhint, string) {

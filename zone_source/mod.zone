@@ -3,3 +3,5 @@
 >name,mod
 
 localize,sunmod
+
+rawfile,ui_mp/t6/menus/privategamelobby_project.lua

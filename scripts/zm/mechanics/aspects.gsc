@@ -183,9 +183,29 @@ aspect_ammomatic() {
     for (;;) {
         if (self.aspect_used != "ws_ammoregen")
             break;
-
-        self iprintln("awesome");
+        
+        // I'm gonna try it with current weapon
+        current_weapon = self GetCurrentWeapon();
+        weapons_list = self GetWeaponsList();
+        foreach (weapon in weapons_list) {
+            if (weapon != current_weapon) {
+                stock = self GetWeaponAmmoStock(weapon);
+                self SetWeaponAmmoStock(weapon, stock + 1);
+            }
+        }
+        self iprintln("Super fucking awesome!!");
 
         wait 1;
     }
+}
+
+aspect_bloodlust_damagecallback(mod, hit_location, hit_origin, attacker, amount) {
+    if (isdefined(self.damageweapon)) {
+        if (isdefined(attacker) && isplayer(attacker)) {
+            if (attacker.aspect_used == "ws_siphon") {
+                attacker.health += 5;
+            }
+        }
+    }
+    return 0;
 }

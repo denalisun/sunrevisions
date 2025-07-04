@@ -4,8 +4,8 @@ import shutil
 from zipfile import ZipFile
 
 # define paths
-GAME_FOLDER = r"D:\Plutonium\bo2"
-OAT_BASE = r"D:\OpenAssetTools"
+GAME_FOLDER = r"C:\Users\Aurora\Games\Plutonium\bo2"
+OAT_BASE = r"C:\OpenAssetTools"
 MOD_BASE = os.getcwd()
 MOD_NAME = "zm_sunrevisions"
 
@@ -35,7 +35,7 @@ if os.path.exists("mod.iwd"):
     os.remove("mod.iwd")
 
 with ZipFile("mod.iwd", 'w') as zipf:
-    for folder in ["scripts"]:
+    for folder in ["scripts", "ui_mp"]:
         if os.path.isdir(folder):
             for root, _, files in os.walk(folder):
                 for file in files:

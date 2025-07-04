@@ -38,6 +38,7 @@ main() {
     replacefunc(::treasure_chest_weapon_spawn, ::treasure_chest_weapon_spawn__override);
 
     maps\mp\zombies\_zm_spawner::register_zombie_damage_callback(::tier_damage_callback);
+    maps\mp\zombies\_zm_spawner::register_zombie_damage_callback(::aspect_bloodlust_damagecallback);
 
     maps\mp\zombies\_zm_spawner::register_zombie_damage_callback(::do_hitmarker);
     maps\mp\zombies\_zm_spawner::register_zombie_death_event_callback(::do_hitmarker_death);
@@ -94,5 +95,11 @@ on_player_spawned() {
         
         // debug for now
         self.score = 999999;
+
+        self iprintln(level.sunmod_vars["startingWeapon"]);
+        if (self HasWeapon("m1911_zm") && level.sunmod_vars["startingWeapon"] != "m1911_zm") {
+            self TakeWeapon("m1911_zm");
+            self GiveWeapon(level.sunmod_vars["startingWeapon"]);
+        }
     }
 }

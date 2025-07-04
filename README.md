@@ -37,8 +37,6 @@
 - Custom perks
 	- Lava Lemonade (only on Tranzit and Survival maps) ✅
 		- $6000, removes lava damage
-	- Crate Power Cocktail 🔁
-		- $10000, gives PaP'ed gun when picking up from the box.
 - Custom weapons
 	- Elektrikgewehr "Electric Rifle"
 		- Storm PSR Model
@@ -52,18 +50,20 @@
 		- Devil's Agent (PaPed Peacekeeper)
 			- 200% damage, 935 firerate (+~25%)
 - Specialties
-	- Bloodlust ("ws_siphon")
+	- Bloodlust ("ws_siphon") ✅
 		- Steal 5HP for each bullet hit
-	- Double Tap Frenzy ("ws_firerate")
+	- Double Tap Frenzy ("ws_firerate") ✅
 		- Changes perk_weapRateMultiplier to 0.55
 		- Only applies with Double Tap
-	- Speed Cola Frenzy ("ws_reload")
+	- Speed Cola Frenzy ("ws_reload") ✅
 		- Changes perk_weapReloadMultiplier to 0.33
 		- Only applies with Speed Cola
 	- Stock Option ("ws_stockammo")
 		- Uses the stock ammo first
-	- Amm-o-Matic ("ws_ammoregen")
+	- Amm-o-Matic ("ws_ammoregen") ✅
 		- Regenerates 10 ammo every second
+	- Crate Power ("ws_weaponupgrade")
+		- Every weapon pulled from box is pack-a-punched.
 - Ray Gun easter egg ✅
 	- Open box between round 9 and 10
 		- stolen from roblox (Michael's Zombies)
@@ -75,3 +75,9 @@
 	- Jetgun in box
 - Complicated Additions (misc)
 	- All weapons from all maps
+- Loadout Weapons
+	- M1911
+	- MP5
+	- M16
+	- DSR-50
+	- Remington 870 MCS
