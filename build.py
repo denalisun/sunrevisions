@@ -4,8 +4,8 @@ import shutil
 from zipfile import ZipFile
 
 # define paths
-GAME_FOLDER = r"C:\Users\Aurora\Games\Plutonium\bo2"
-OAT_BASE = r"C:\OpenAssetTools"
+GAME_FOLDER = r"D:\Plutonium\bo2"
+OAT_BASE = r"D:\OpenAssetTools"
 MOD_BASE = os.getcwd()
 MOD_NAME = "zm_sunrevisions"
 

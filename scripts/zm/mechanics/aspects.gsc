@@ -184,7 +184,6 @@ aspect_ammomatic() {
         if (self.aspect_used != "ws_ammoregen")
             break;
         
-        // I'm gonna try it with current weapon
         current_weapon = self GetCurrentWeapon();
         weapons_list = self GetWeaponsList();
         foreach (weapon in weapons_list) {
@@ -193,7 +192,6 @@ aspect_ammomatic() {
                 self SetWeaponAmmoStock(weapon, stock + 1);
             }
         }
-        self iprintln("Super fucking awesome!!");
 
         wait 1;
     }

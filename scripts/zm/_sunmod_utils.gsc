@@ -13,6 +13,14 @@
 #include maps\mp\_demo;
 #include maps\mp\zombies\_zm_stats;
 
+say_pos() {
+    level endon("end_game");
+    for (;;) {
+        self iprintln("Position: " + self.origin + "\nAngle: " + self.angles);
+        wait 1;
+    }
+}
+
 init_sunmod_vars() {
     level.sunmod_vars = [];
 
@@ -20,10 +28,8 @@ init_sunmod_vars() {
     // 1 = Normal
     // 2 = Hard
     // 3 = Rampage
-    level.sunmod_vars["difficulty"] = getgametypesetting("");
-    level.sunmod_vars["using_zm_weapons"] = false; // set to true if compiled with zm_weapons
-
-    level.sunmod_vars["startingWeapon"] = getgametypesetting("sun_starterWeapon");
+    level.sunmod_vars["difficulty"] = getgametypesetting("sun_gameDifficulty");
+    level.start_weapon = getgametypesetting("sunStarterWeapon");
 }
 
 spawn_trigger(origin, width, height, cursorhint, string) {
