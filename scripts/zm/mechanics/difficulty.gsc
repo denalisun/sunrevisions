@@ -23,7 +23,7 @@
 difficulty_handler() {
     level endon("end_game");
 
-    difficulty = level.sunmod_vars["difficulty"];
+    difficulty = getdvarint("sun_gameDifficulty");
     if (difficulty > 3)
         difficulty = 3; // This should never happen but im making sure it doesn't
 
@@ -34,7 +34,7 @@ difficulty_handler() {
                 level.zombie_total = 35;
         } else if (difficulty == 1) {
             if (level.zombie_total > 59)
-                level.zombie_total = 59;    
+                level.zombie_total = 59;
         }
         
         if (difficulty == 3)
@@ -63,17 +63,17 @@ ai_calculate_health__override( round_number )
             level.zombie_health = int( level.zombie_health + level.zombie_vars["zombie_health_increase"] );
     }
 
-    if (level.sunmod_vars["difficulty"] == 0)
+    if (getdvarint("sun_gameDifficulty") == 0)
     {
         level.zombie_health = int(level.zombie_health * 0.75);
         if (level.zombie_health > 8454)
             level.zombie_health = 8454; // round 35 health cap
     }
-    else if (level.sunmod_vars["difficulty"] == 1)
+    else if (getdvarint("sun_gameDifficulty") == 1)
         if (level.zombie_health > 11272)
             level.zombie_health = 11272; // round 35 health cap
-    else if (level.sunmod_vars["difficulty"] == 2)
+    else if (getdvarint("sun_gameDifficulty") == 2)
         level.zombie_health += int(level.zombie_health * 0.25);
-    else if (level.sunmod_vars["difficulty"] == 3)
+    else if (getdvarint("sun_gameDifficulty") == 3)
         level.zombie_health += int(level.zombie_health * 0.5);
 }

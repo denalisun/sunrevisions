@@ -98,7 +98,7 @@ init_levelvars__override()
     level.laststandpistol = "m1911_zm";
     level.default_laststandpistol = "m1911_zm";
     level.default_solo_laststandpistol = "m1911_upgraded_zm";
-    level.start_weapon = getdvar("sun_startingLoadout");
+    level.start_weapon = "m1911_zm";
     level.first_round = 1;
     level.start_round = getgametypesetting( "startRound" );
     level.round_number = level.start_round;
