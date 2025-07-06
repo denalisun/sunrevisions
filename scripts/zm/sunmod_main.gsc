@@ -82,6 +82,8 @@ init() {
     level thread on_player_connected();
 
     level thread init_perks();
+    
+    // I need to find better locations for this on each map
     level thread spawn_aspect_machine((1659.95, -544.765, -42.1959), (0, 180, 0), "mus_perks_sleight_sting", "doubletap_light");
 
     //level thread init_sunmod_vars();
@@ -104,7 +106,12 @@ init_levelvars__override()
     level.round_number = level.start_round;
     level.enable_magic = getgametypesetting( "magic" );
     level.headshots_only = getgametypesetting( "headshotsonly" );
-    level.player_starting_points = level.round_number * 500;
+
+    startPoints = 500;
+    if (getdvarint("sun_gameDifficulty") < 2)
+        startPoints = 1000;
+    level.player_starting_points = level.round_number * startPoints;
+    
     level.round_start_time = 0;
     level.pro_tips_start_time = 0;
     level.intermission = 0;
@@ -200,7 +207,7 @@ on_player_connected() {
     level endon("end_game");
     for (;;) {
         level waittill("connected", player);
-        player thread on_player_spawned();
+        //player thread on_player_spawned();
         player thread max_ammo_fix();
         player thread player_downed_watcher();
         player thread weapon_tier_watcher();

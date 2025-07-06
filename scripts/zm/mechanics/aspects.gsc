@@ -85,36 +85,61 @@ get_aspect_name() {
     if (!isdefined(self.selected_aspect_in_machine))
         self.selected_aspect_in_machine = "ws_siphon";
     
-    if (self.selected_aspect_in_machine == "ws_siphon")
-        return "Bloodlust";
-    else if (self.selected_aspect_in_machine == "ws_firerate")
-        return "Double Tap Frenzy";
-    else if (self.selected_aspect_in_machine == "ws_reload")
-        return "Speed Cola Frenzy";
-    else if (self.selected_aspect_in_machine == "ws_stockammo")
-        return "Stock Option";
-    else if (self.selected_aspect_in_machine == "ws_ammoregen")
-        return "Amm-o-Matic";
+    toRet = "NIL";
+    switch (self.selected_aspect_in_machine) {
+    case "ws_siphon":
+        toRet = "Bloodlust";
+        break;
+    case "ws_firerate":
+        toRet = "Double Tap Frenzy";
+        break;
+    case "ws_reload":
+        toRet = "Speed Cola Frenzy";
+        break;
+    case "ws_stockammo":
+        toRet = "Stock Option";
+        break;
+    case "ws_ammoregen":
+        toRet = "Lead Hog";
+        break;
+    case "ws_weaponupgrade":
+        toRet = "Crate Power";
+        break;
+    case "ws_nodeath":
+        toRet = "Dying Wish";
+        break;
+    }
 
-    return "Bloodlust";
+    return toRet;
 }
 
 switch_aspect() {
     if (!isdefined(self.selected_aspect_in_machine))
         self.selected_aspect_in_machine = "ws_siphon";
 
-    if (self.selected_aspect_in_machine == "ws_siphon")
+    switch (self.selected_aspect_in_machine) {
+    case "ws_siphon":
         self.selected_aspect_in_machine = "ws_firerate";
-    else if (self.selected_aspect_in_machine == "ws_firerate")
+        break;
+    case "ws_firerate":
         self.selected_aspect_in_machine = "ws_reload";
-    else if (self.selected_aspect_in_machine == "ws_reload")
+        break;
+    case "ws_reload":
         self.selected_aspect_in_machine = "ws_stockammo";
-    else if (self.selected_aspect_in_machine == "ws_stockammo")
+        break;
+    case "ws_stockammo":
         self.selected_aspect_in_machine = "ws_ammoregen";
-    else if (self.selected_aspect_in_machine == "ws_ammoregen")
+        break;
+    case "ws_ammoregen":
+        self.selected_aspect_in_machine = "ws_weaponupgrade";
+        break;
+    case "ws_weaponupgrade":
+        self.selected_aspect_in_machine = "ws_nodeath";
+        break;
+    case "ws_nodeath":
         self.selected_aspect_in_machine = "ws_siphon";
-
-    self iprintln(self.selected_aspect_in_machine);
+        break;
+    }
 }
 
 aspect_machine_trigger(perkId, sound, cost) {
@@ -189,7 +214,7 @@ aspect_ammomatic() {
         foreach (weapon in weapons_list) {
             if (weapon != current_weapon) {
                 stock = self GetWeaponAmmoStock(weapon);
-                self SetWeaponAmmoStock(weapon, stock + 1);
+                self SetWeaponAmmoStock(weapon, stock + 10);
             }
         }
 

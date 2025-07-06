@@ -5,7 +5,3 @@
 localize,sunmod
 
 rawfile,ui_mp/t6/menus/privategamelobby_project.lua
-rawfile,ui_mp/t6/zombie/sunloadout.lua
-rawfile,zm/gamesettings_zclassic.cfg
-rawfile,zm/gamesettings_zstandard.cfg
-rawfile,zm/gamesettings_zsurvival.cfg

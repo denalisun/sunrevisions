@@ -63,17 +63,18 @@ ai_calculate_health__override( round_number )
             level.zombie_health = int( level.zombie_health + level.zombie_vars["zombie_health_increase"] );
     }
 
-    if (getdvarint("sun_gameDifficulty") == 0)
+    difficulty = getdvarint("sun_gameDifficulty");
+    if (difficulty == 0)
     {
         level.zombie_health = int(level.zombie_health * 0.75);
         if (level.zombie_health > 8454)
             level.zombie_health = 8454; // round 35 health cap
     }
-    else if (getdvarint("sun_gameDifficulty") == 1)
+    else if (difficulty == 1)
         if (level.zombie_health > 11272)
             level.zombie_health = 11272; // round 35 health cap
-    else if (getdvarint("sun_gameDifficulty") == 2)
+    else if (difficulty == 2)
         level.zombie_health += int(level.zombie_health * 0.25);
-    else if (getdvarint("sun_gameDifficulty") == 3)
+    else if (difficulty == 3)
         level.zombie_health += int(level.zombie_health * 0.5);
 }
