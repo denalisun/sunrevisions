@@ -35,7 +35,7 @@ if os.path.exists("mod.iwd"):
     os.remove("mod.iwd")
 
 with ZipFile("mod.iwd", 'w') as zipf:
-    for folder in ["scripts", "ui_mp"]:
+    for folder in ["scripts", "ui_mp", "weapons", "xanim", "clientscripts"]:
         if os.path.isdir(folder):
             for root, _, files in os.walk(folder):
                 for file in files:

@@ -92,6 +92,121 @@ init() {
     level thread round_watcher();
 
     level.local_doors_stay_open = 1;
+
+    // this is so broken its not even funny
+    //precacheitem( "tesla_gun_zm" );
+    precacheitem("870mcs_upgraded_zm");
+    precacheitem("870mcs_zm");
+    precacheitem("ak47_upgraded_zm");
+    precacheitem("ak47_zm");
+    precacheitem("ak74u_extclip_upgraded_zm");
+    precacheitem("ak74u_extclip_zm");
+    precacheitem("ak74u_upgraded_zm");
+    precacheitem("ak74u_zm");
+    precacheitem("an94_upgraded_zm");
+    precacheitem("an94_zm");
+    precacheitem("ballista_upgraded_zm");
+    precacheitem("ballista_zm");
+    precacheitem("barretm82_upgraded_zm");
+    precacheitem("barretm82_zm");
+    precacheitem("beacon_zm");
+    precacheitem("beretta93r_extclip_upgraded_zm");
+    precacheitem("beretta93r_extclip_zm");
+    precacheitem("beretta93r_upgraded_zm");
+    precacheitem("beretta93r_zm");
+    precacheitem("c96_upgraded_zm");
+    precacheitem("c96_zm");
+    precacheitem("dsr50_upgraded_zm");
+    precacheitem("dsr50_zm");
+    precacheitem("dualoptic_saritch_upgraded_zm");
+    precacheitem("evoskorpion_upgraded_zm");
+    precacheitem("evoskorpion_zm");
+    precacheitem("fivesevendw_upgraded_zm");
+    precacheitem("fivesevendw_zm");
+    precacheitem("fivesevenlh_upgraded_zm");
+    precacheitem("fivesevenlh_zm");
+    precacheitem("fiveseven_upgraded_zm");
+    precacheitem("fiveseven_zm");
+    precacheitem("fnfal_upgraded_zm");
+    precacheitem("fnfal_zm");
+    precacheitem("galil_upgraded_zm");
+    precacheitem("galil_zm");
+    precacheitem("gl_m16_upgraded_zm");
+    precacheitem("gl_tar21_zm");
+    precacheitem("gl_type95_zm");
+    precacheitem("gl_xm8_zm");
+    precacheitem("hamr_upgraded_zm");
+    precacheitem("hamr_zm");
+    precacheitem("hk416_upgraded_zm");
+    precacheitem("hk416_zm");
+    precacheitem("judge_upgraded_zm");
+    precacheitem("judge_zm");
+    precacheitem("kard_upgraded_zm");
+    precacheitem("kard_zm");
+    precacheitem("ksg_upgraded_zm");
+    precacheitem("ksg_zm");
+    precacheitem("lsat_upgraded_zm");
+    precacheitem("lsat_zm");
+    precacheitem("m14_upgraded_zm");
+    precacheitem("m14_zm");
+    precacheitem("m16_gl_upgraded_zm");
+    precacheitem("m16_zm");
+    precacheitem("m1911lh_upgraded_zm");
+    precacheitem("m1911_upgraded_zm");
+    precacheitem("m1911_zm");
+    precacheitem("m32_upgraded_zm");
+    precacheitem("m32_zm");
+    precacheitem("mg08_upgraded_zm");
+    precacheitem("mg08_zm");
+    precacheitem("minigun_alcatraz_upgraded_zm");
+    precacheitem("minigun_alcatraz_zm");
+    precacheitem("mp40_upgraded_zm");
+    precacheitem("mp40_zm");
+    precacheitem("mp44_upgraded_zm");
+    precacheitem("mp44_zm");
+    precacheitem("mp5k_upgraded_zm");
+    precacheitem("mp5k_zm");
+    precacheitem("pdw57_upgraded_zm");
+    precacheitem("pdw57_zm");
+    precacheitem("python_upgraded_zm");
+    precacheitem("python_zm");
+    precacheitem("qcw05_upgraded_zm");
+    precacheitem("qcw05_zm");
+    precacheitem("golden_raygun_upgraded_zm");
+    precacheitem("golden_raygun_zm");
+    precacheitem("riotshield_zm");
+    precacheitem("rnma_upgraded_zm");
+    precacheitem("rnma_zm");
+    precacheitem("rottweil72_upgraded_zm");
+    precacheitem("rottweil72_zm");
+    precacheitem("rpd_upgraded_zm");
+    precacheitem("rpd_zm");
+    precacheitem("saiga12_upgraded_zm");
+    precacheitem("saiga12_zm");
+    precacheitem("saritch_upgraded_zm");
+    precacheitem("saritch_zm");
+    precacheitem("scar_upgraded_zm");
+    precacheitem("scar_zm");
+    precacheitem("sf_qcw05_upgraded_zm");
+    precacheitem("srm1216_upgraded_zm");
+    precacheitem("srm1216_zm");
+    precacheitem("sticky_grenade_zm");
+    precacheitem("svu_upgraded_zm");
+    precacheitem("svu_zm");
+    precacheitem("syrette_zm");
+    precacheitem("tar21_upgraded_zm");
+    precacheitem("tar21_zm");
+    precacheitem("tazer_knuckles_zm");
+    precacheitem("thompson_upgraded_zm");
+    precacheitem("thompson_zm");
+    precacheitem("type95_upgraded_zm");
+    precacheitem("type95_zm");
+    precacheitem("usrpg_upgraded_zm");
+    precacheitem("usrpg_zm");
+    precacheitem("uzi_upgraded_zm");
+    precacheitem("uzi_zm");
+    precacheitem("xm8_upgraded_zm");
+    precacheitem("xm8_zm");
 }
 
 init_levelvars__override()
@@ -100,7 +215,7 @@ init_levelvars__override()
     level.laststandpistol = "m1911_zm";
     level.default_laststandpistol = "m1911_zm";
     level.default_solo_laststandpistol = "m1911_upgraded_zm";
-    level.start_weapon = "m1911_zm";
+    level.start_weapon = getdvar("sun_startingLoadout");
     level.first_round = 1;
     level.start_round = getgametypesetting( "startRound" );
     level.round_number = level.start_round;
@@ -213,6 +328,9 @@ on_player_connected() {
         player thread weapon_tier_watcher();
 
         //player thread say_pos();
+
+        if (getdvarint("sun_disableFog") == 1)
+            player setclientdvar("r_fog", 0);
 
         if (!isdefined(player.hud_damagefeedback))
             player thread init_player_hitmarkers();

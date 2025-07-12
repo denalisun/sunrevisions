@@ -37,14 +37,18 @@
 - Custom perks
 	- Lava Lemonade (only on Tranzit and Survival maps) ✅
 		- $6000, removes lava damage
+	- Amm-o-Matic
+		- $5000, spawns a max ammo
+		- Could be perk model or Stamin-Up retexture
 - Custom weapons
 	- Elektrikgewehr "Electric Rifle"
 		- Storm PSR Model
-		- 5 Ammo, 4 reserve, 8 max
+		- 5 Ammo, 4 reserve (mags), 8 max
 		- Der Blitzkrieg
 			- PaPed
-			- 10 Ammo, 8 reserve, 8 max
+			- 10 Ammo, 8 reserve (mags), 8 max
 	- (All weapons from other maps)
+		- Including Wonder Weapons
 	- Peacekeeper
 		- Slightly modified damage, same stats
 		- Devil's Agent (PaPed Peacekeeper)
@@ -67,7 +71,7 @@
 	- Dying Wish ("ws_nodeath")
 		- Same as Dying Wish from BO4
 - Ray Gun easter egg ✅
-	- Open box between round 9 and 10
+	- Open box between round 15 and 16
 		- stolen from roblox (Michael's Zombies)
 - Simple fixes
 	- All TranZit doors stay open ✅
