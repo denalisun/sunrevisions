@@ -1,5 +1,4 @@
 >game,T6
->type,fastfile
 >name,mod
 
 localize,sunmod
@@ -17,6 +16,8 @@ xmodel,,t6_wpn_zmb_raygun2_upg_view
 xmodel,,t6_wpn_zmb_raygun2_upg_world
 xmodel,,t6_wpn_zmb_raygun2_view
 xmodel,,t6_wpn_zmb_raygun2_world
+
+soundbank,mod.all
 
 weapon,870mcs_upgraded_zm
 weapon,870mcs_zm
