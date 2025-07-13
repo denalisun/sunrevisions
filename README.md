@@ -45,14 +45,16 @@
 		- Alternate-Reality Storm PSR
 		- 12 Ammo, 4 reserve (mags), 8 max
 		- 98 RPM
-		- Avogadro's Opus (PaPed)
+		- Tesla's Delight (PaPed)
 			- 26 Ammo, 8 reserve (mags), 8 max
 		- Lore
-			- Created in 2023 as a precursor to the Tempest, the Fulgur PR-1 is a sniper-style American clone of the Wunderwaffe DG-1 created by Broken Arrow harnessing the power of the Kimat's Bite. Hitscan weapon, shoots electricity with high damage and spreads to other targets.
+			- Created in 2023 as a precursor to the Tempest, the Horus PR-1 is a sniper-style American clone of the Wunderwaffe DG-1 (Scharfschütze) created by Broken Arrow, harnessing the power of the Kimat's Bite.
+		- Hitscan weapon, shoots electricity with high damage and spreads to other targets.
 	- Golden Ray Gun
 		- Unupgradable
 		- 100 ammo, 4 reserve (mags), 4 max (regenerating)
 		- Based off the Golden Knight (Reminiscence Zombies on Roblox)
+			- And the Jimbothy video
 	- (All weapons from other maps)
 		- Including Wonder Weapons
 	- Peacekeeper
