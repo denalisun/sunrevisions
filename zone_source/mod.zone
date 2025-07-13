@@ -4,13 +4,6 @@
 localize,sunmod
 rawfile,ui_mp/t6/menus/privategamelobby_project.lua
 
-techniqueset,,mc_l_sm_r0c0n0s0
-techniqueset,,mc_l_sm_r0c0
-techniqueset,,mc_l_sm_b0c0s0
-techniqueset,,mc_l_sm_r0c0n0s0_sls
-techniqueset,,mc_l_sm_r0c0d0n0s0_hero
-techniqueset,,unlitdecalblend_add
-
 fx,,weapon/grenade/fx_trail_grenade
 xmodel,,t6_wpn_zmb_raygun2_upg_view
 xmodel,,t6_wpn_zmb_raygun2_upg_world

@@ -4,8 +4,8 @@ import shutil
 from zipfile import ZipFile
 
 # define paths
-GAME_FOLDER = r"D:\Plutonium\bo2"
-OAT_BASE = r"D:\OpenAssetTools"
+GAME_FOLDER = r"C:\Users\Aurora\Games\Plutonium\bo2"
+OAT_BASE = r"C:\OpenAssetTools"
 MOD_BASE = os.getcwd()
 MOD_NAME = "zm_sunrevisions"
 
@@ -35,7 +35,7 @@ if os.path.exists("mod.iwd"):
     os.remove("mod.iwd")
 
 with ZipFile("mod.iwd", 'w') as zipf:
-    for folder in ["scripts", "ui_mp", "weapons", "xanim", "clientscripts"]:
+    for folder in ["scripts", "ui_mp", "weapons", "xanim", "clientscripts", "sound"]:
         if os.path.isdir(folder):
             for root, _, files in os.walk(folder):
                 for file in files:
@@ -51,7 +51,7 @@ if err == 0:
 
     shutil.copy(os.path.join(MOD_BASE, "zone", "mod.ff"), os.path.join(MOD_FOLDER, "mod.ff"))
     shutil.copy(os.path.join(MOD_BASE, "mod.iwd"), os.path.join(MOD_FOLDER, "mod.iwd"))
-    #shutil.copy(os.path.join(MOD_BASE, "zone", "mod.all.sabl"), os.path.join(MOD_FOLDER, "mod.all.sabl"))
+    shutil.copy(os.path.join(MOD_BASE, "zone", "mod.all.sabl"), os.path.join(MOD_FOLDER, "mod.all.sabl"))
     shutil.copy(os.path.join(MOD_BASE, "mod.json"), os.path.join(MOD_FOLDER, "mod.json"))
 else:
     print("FAIL!")
