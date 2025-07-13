@@ -41,12 +41,18 @@
 		- $5000, spawns a max ammo
 		- Could be perk model or Stamin-Up retexture
 - Custom weapons
-	- Elektrikgewehr "Electric Rifle"
-		- Storm PSR Model
-		- 5 Ammo, 4 reserve (mags), 8 max
-		- Der Blitzkrieg
-			- PaPed
-			- 10 Ammo, 8 reserve (mags), 8 max
+	- Horus PR-1
+		- Alternate-Reality Storm PSR
+		- 12 Ammo, 4 reserve (mags), 8 max
+		- 98 RPM
+		- Avogadro's Opus (PaPed)
+			- 26 Ammo, 8 reserve (mags), 8 max
+		- Lore
+			- Created in 2023 as a precursor to the Tempest, the Fulgur PR-1 is a sniper-style American clone of the Wunderwaffe DG-1 created by Broken Arrow harnessing the power of the Kimat's Bite. Hitscan weapon, shoots electricity with high damage and spreads to other targets.
+	- Golden Ray Gun
+		- Unupgradable
+		- 100 ammo, 4 reserve (mags), 4 max (regenerating)
+		- Based off the Golden Knight (Reminiscence Zombies on Roblox)
 	- (All weapons from other maps)
 		- Including Wonder Weapons
 	- Peacekeeper
