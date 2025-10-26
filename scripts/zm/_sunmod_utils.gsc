@@ -338,7 +338,7 @@ add_weapons() {
     add_zombie_weapon( "staff_water_zm_cheap", undefined, &"WATER_STAFF", 50, "wpck_rpg", "", undefined, 1 );
     add_zombie_weapon( "staff_water_upgraded_zm", undefined, &"WATER_STAFF_CHARGED", 50, "wpck_rpg", "", undefined, 1 );
     add_zombie_weapon( "staff_revive_zm", undefined, &"ZM_TOMB_WEAP_STAFF_REVIVE", 50, "wpck_rpg", "", undefined, 1 );
-    change_weapon_cost( "mp40_zm", 1300 );
+    //change_weapon_cost( "mp40_zm", 1300 );
     level.weapons_using_ammo_sharing = 1;
     add_shared_ammo_weapon( "ak74u_extclip_zm", "ak74u_zm" );
     add_shared_ammo_weapon( "mp40_stalker_zm", "mp40_zm" );

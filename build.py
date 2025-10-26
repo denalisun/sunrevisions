@@ -4,14 +4,21 @@ import shutil
 from zipfile import ZipFile
 
 # define paths
-GAME_FOLDER = r"C:\Users\Aurora\Games\Plutonium\bo2"
-OAT_BASE = r"C:\OpenAssetTools"
+GAME_FOLDER = r"/mnt/windows/Plutonium/bo2"
+OAT_BASE = r"/home/amelia/OpenAssetTools/"
 MOD_BASE = os.getcwd()
 MOD_NAME = "zm_sunrevisions"
 
+# if not os.path.exists("build"):
+#     os.mkdir("build")
+
+# if os.path.exists("./addon_mods"):
+#     for f in os.listdir("./addon_mods"):
+#         pth = os.path.join(os.getcwd(), "addon_mods", f)
+
 # command for linker
 linker_cmd = [
-    os.path.join(OAT_BASE, "Linker.exe"),
+    os.path.join(OAT_BASE, "Linker"),
     "-v",
     "--load", os.path.join(GAME_FOLDER, "zone", "all", "zm_transit.ff"),
     "--load", os.path.join(GAME_FOLDER, "zone", "all", "zm_prison.ff"),
@@ -46,7 +53,7 @@ with ZipFile("mod.iwd", 'w') as zipf:
 # copy output if linker succeeded
 if err == 0:
     print("Linking succeeded. Copying files...")
-    MOD_FOLDER = os.path.join(os.getenv("LOCALAPPDATA"), "Plutonium", "storage", "t6", "mods", MOD_NAME)
+    MOD_FOLDER = os.path.join("/home/amelia/Games/plutonium_prefix/drive_c/users/amelia/AppData/Local", "Plutonium", "storage", "t6", "mods", MOD_NAME)
     os.makedirs(MOD_FOLDER, exist_ok=True)
 
     shutil.copy(os.path.join(MOD_BASE, "zone", "mod.ff"), os.path.join(MOD_FOLDER, "mod.ff"))
